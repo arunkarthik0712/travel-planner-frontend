@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import { FaThumbsUp, FaComment } from "react-icons/fa";
 import axiosInstance from "../api/axiosInstance";
-import Loader from "../components/Loader"; // Assuming you have a Loader component
+import Loader from "../components/Loader";
 
 const DiscoveriesPage = () => {
   const [discoveries, setDiscoveries] = useState([]);

@@ -5,7 +5,8 @@ import axiosInstance from "../api/axiosInstance";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft, FaSpinner } from "react-icons/fa";
+import Loader from "./Loader";
 
 const DiscoverySchema = Yup.object().shape({
   location: Yup.string().required("Location is required"),
@@ -17,6 +18,7 @@ const DiscoveryForm = ({ initialValues = {}, isEdit = false, discoveryId }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleFileChange = (event) => {
     const selectedFiles = Array.from(event.target.files);
@@ -35,6 +37,7 @@ const DiscoveryForm = ({ initialValues = {}, isEdit = false, discoveryId }) => {
   };
 
   const handleSubmit = async (values, { resetForm }) => {
+    setSubmitting(true);
     const uploadedImages = [];
 
     for (const file of files) {
@@ -54,11 +57,13 @@ const DiscoveryForm = ({ initialValues = {}, isEdit = false, discoveryId }) => {
           uploadedImages.push(...photoURLs);
         } else {
           toast.error("Failed to upload image.");
+          setSubmitting(false);
           return;
         }
       } catch (err) {
         console.error("Upload Error:", err.response?.data || err.message);
         toast.error("Error uploading file. Please try again.");
+        setSubmitting(false);
         return;
       }
     }
@@ -96,6 +101,8 @@ const DiscoveryForm = ({ initialValues = {}, isEdit = false, discoveryId }) => {
     } catch (error) {
       console.error("Error saving discovery:", error.response?.data);
       toast.error("Failed to save discovery");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -167,8 +174,18 @@ const DiscoveryForm = ({ initialValues = {}, isEdit = false, discoveryId }) => {
           <button
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600 disabled:opacity-50"
+            disabled={submitting}
           >
-            {isEdit ? "Update Discovery" : "Create Discovery"}
+            {submitting ? (
+              <div className="flex ">
+                <Loader className="size-1 mr-2" />
+                <p className="text-white">uploading...</p>
+              </div>
+            ) : isEdit ? (
+              "Update Discovery"
+            ) : (
+              "Create Discovery"
+            )}
           </button>
         </Form>
       )}

@@ -152,7 +152,7 @@ The Travel Planner App is a comprehensive platform designed to help users plan, 
 
 - **Frontend Repository:** [https://github.com/arunkarthik0712/travel-planner-frontend](https://github.com/arunkarthik0712/travel-planner-frontend)
 - **Backend Repository:** [https://github.com/arunkarthik0712/travel-planner-backend](https://github.com/arunkarthik0712/travel-planner-backend)
-- **Frontend**: [https://arunkarthik0710-travel-planner.netlify.app/](https://arunkarthik0710--travel-planner.netlify.app/)
+- **Frontend**: [https://arunkarthik0710-travel-planner.netlify.app/](https://arunkarthik0710-travel-planner.netlify.app/)
 - **Backend**: `https://travel-planner-backend-39le.onrender.com`
 
 ## How to Run the Project

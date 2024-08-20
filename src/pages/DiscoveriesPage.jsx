@@ -3,9 +3,11 @@ import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import { FaThumbsUp, FaComment } from "react-icons/fa";
 import axiosInstance from "../api/axiosInstance";
+import Loader from "../components/Loader"; // Assuming you have a Loader component
 
 const DiscoveriesPage = () => {
   const [discoveries, setDiscoveries] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchDiscoveries = async () => {
@@ -16,11 +18,21 @@ const DiscoveriesPage = () => {
         setDiscoveries(response.data);
       } catch (error) {
         console.error("Failed to fetch discoveries", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchDiscoveries();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex flex-col justify-center items-center min-h-screen">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -43,6 +55,9 @@ const DiscoveriesPage = () => {
                   {discovery.location}
                 </h2>
                 <p className="text-gray-700 mb-4">{discovery.description}</p>
+                <p className="text-sm text-gray-500 mb-4">
+                  Uploaded by: {discovery.userId.username}
+                </p>
                 <div className="flex justify-between items-center text-gray-600">
                   <Link
                     to={`/discoveries/${discovery._id}`}

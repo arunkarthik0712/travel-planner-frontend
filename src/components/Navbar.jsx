@@ -79,14 +79,14 @@ const Navbar = () => {
             <>
               <Link
                 to="/login"
-                className="flex items-center bg-green-500 shadow-md text-white px-4 py-2 rounded-lg transition duration-300 hover:bg-green-600"
+                className="flex items-center bg-green-500 shadow-md text-white px-4 py-2 rounded-full transition duration-300 hover:bg-green-600"
               >
                 <FaSignInAlt className="mr-2" />
                 Login
               </Link>
               <Link
                 to="/register"
-                className="flex items-center bg-blue-500 shadow-md text-white px-4 py-2 rounded-lg transition duration-300 hover:bg-blue-600"
+                className="flex items-center bg-blue-500 shadow-md text-white px-4 py-2 rounded-full transition duration-300 hover:bg-blue-600"
               >
                 Register
               </Link>

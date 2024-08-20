@@ -75,7 +75,7 @@ const Login = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full px-4 py-3 text-lg font-bold text-white bg-teal-600 rounded-lg hover:bg-teal-500 transition-all"
+                  className="w-full px-4 py-3 text-lg font-bold text-white bg-teal-600 rounded-full hover:bg-teal-500 transition-all"
                 >
                   {isSubmitting ? <Loader small /> : "Login"}
                 </button>

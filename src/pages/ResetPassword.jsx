@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axiosInstance from "../api/axiosInstance";
+import Loader from "../components/Loader";
 
 const validationSchema = Yup.object({
   password: Yup.string()
@@ -54,12 +55,14 @@ const ResetPassword = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between px-6 md:px-16 py-4 bg-gray-100">
-        <h1 className="text-lg md:text-2xl font-extrabold">Blog App</h1>
+      <div className="flex items-center justify-between px-6 md:px-16 py-4 bg-teal-600">
+        <h1 className="text-lg md:text-2xl text-white font-extrabold">
+          Travel planner
+        </h1>
       </div>
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="flex flex-col justify-center items-center space-y-6 w-[85%] md:w-[30%] p-6 bg-white shadow-lg rounded-lg">
-          <h1 className="text-2xl font-bold text-left w-full">
+          <h1 className="text-2xl text-teal-700 font-bold text-left w-full">
             Reset Password
           </h1>
           <Formik
@@ -74,7 +77,7 @@ const ResetPassword = () => {
                     type="password"
                     name="password"
                     placeholder="Enter your new password"
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-md focus:border-black outline-none"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-md focus:border-teal-500 outline-none"
                   />
                   <ErrorMessage
                     name="password"
@@ -87,7 +90,7 @@ const ResetPassword = () => {
                     type="password"
                     name="confirmPassword"
                     placeholder="Confirm New Password"
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-md focus:border-black outline-none"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-md focus:border-teal-500 outline-none"
                   />
                   <ErrorMessage
                     name="confirmPassword"
@@ -98,9 +101,9 @@ const ResetPassword = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full px-4 py-3 text-lg font-bold text-white bg-black rounded-lg hover:bg-gray-600 transition-all"
+                  className="w-full px-4 py-3 text-lg font-bold text-white bg-teal-500 rounded-full hover:bg-teal-600 transition-all"
                 >
-                  {isSubmitting ? "Resetting..." : "Reset Password"}
+                  {isSubmitting ? <Loader /> : "Reset Password"}
                 </button>
                 {Back}
               </Form>
